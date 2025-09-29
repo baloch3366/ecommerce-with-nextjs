@@ -31,13 +31,15 @@ export default function AddToCart({
       toast.success('Added to cart', {
         action: {
           label: 'Go to Cart',
-          onClick: () => {
-            router.push('/cart')
-          },
+          onClick: () => router.push('/cart'),
         },
       })
-    } catch (error: any) {
-      toast.error(error.message || 'Something went wrong')
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message)
+      } else {
+        toast.error('Something went wrong')
+      }
     }
   }
 
@@ -78,8 +80,12 @@ export default function AddToCart({
               const itemId = await addItem(item, quantity)
               console.log('Item added with clientId:', itemId)
               router.push('/cart')
-            } catch (error: any) {
-              toast.error(error.message || 'Failed to add to cart')
+            } catch (error) {
+              if (error instanceof Error) {
+                toast.error(error.message)
+              } else {
+                toast.error('Failed to add to cart')
+              }
             }
           }}
         >
@@ -92,8 +98,12 @@ export default function AddToCart({
             try {
               await addItem(item, quantity)
               router.push('/checkout')
-            } catch (error: any) {
-              toast.error(error.message || 'Checkout failed')
+            } catch (error) {
+              if (error instanceof Error) {
+                toast.error(error.message)
+              } else {
+                toast.error('Checkout failed')
+              }
             }
           }}
         >

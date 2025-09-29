@@ -1,18 +1,28 @@
+import mongoose, { Mongoose } from "mongoose"
 
+interface Cached {
+  conn: Mongoose | null
+  promise: Promise<Mongoose> | null
+}
 
-import mongoose from "mongoose";
+// 👇 Safely add mongoose to globalThis for hot-reload in Next.js
+declare global {
+  // eslint-disable-next-line no-var
+  var mongoose: Cached | undefined
+}
 
-const catched = (global as any).mongoose || {conn: null, promise:null};
+const cached: Cached = global.mongoose || { conn: null, promise: null }
 
-export const ConnectToDatabase = async(DB_URL = process.env.DB_URL) => {
-    if(catched.conn) return catched.conn;
+export const ConnectToDatabase = async (DB_URL = process.env.DB_URL) => {
+  if (cached.conn) return cached.conn
 
-    if(!DB_URL) throw new Error('Database-url is missing');
-    catched.promise = catched.promise || mongoose.connect(DB_URL);
-    
-    catched.conn = await catched.promise;
-    // console.log(catched)
+  if (!DB_URL) throw new Error("Database URL is missing")
 
-    console.log("connection success")
-    return catched.conn;
+  cached.promise = cached.promise || mongoose.connect(DB_URL)
+
+  cached.conn = await cached.promise
+  global.mongoose = cached
+
+  console.log("✅ MongoDB Connected")
+  return cached.conn
 }

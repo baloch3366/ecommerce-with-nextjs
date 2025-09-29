@@ -22,7 +22,6 @@ export const {
     auth,
     signIn,
     signOut,
-    update
 } = NextAuth({
       secret: process.env.AUTH_SECRET,
     ...authConfig,
@@ -92,7 +91,7 @@ export const {
     ],
     callbacks:{
         //Login control
-        async signIn({user,account}) {
+        async signIn({account}) {
             // Allow all non-credentials providers (e.g google)
             if(account?.provider !== "credentials") return true;
             return true // Allow signin
