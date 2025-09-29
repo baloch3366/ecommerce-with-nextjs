@@ -6,9 +6,7 @@ import Order from '@/lib/db/model/order-model'
 import { STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET } from '@/lib/constant'
 import { sendPurchaseReceipt } from '../../../../../email'
 
-const stripe = new Stripe(STRIPE_SECRET_KEY as string, {
-  apiVersion: '2024-06-20', // always set API version
-})
+const stripe = new Stripe(STRIPE_SECRET_KEY! as string)
 
 export async function POST(req: NextRequest) {
   try {

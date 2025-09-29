@@ -52,7 +52,7 @@ export const SENDER_EMAIL=process.env.RESEND_EMAIL || 'jackleelive1989@gmail.com
 export const SENDER_NAME = process.env.RESEND_NAME || 'Shopping'
 
 
-export const STRIPE_PUBLIC_KEY = process.env.NEXT_STRIPE_PUBLIC_KEY
+export const STRIPE_PUBLIC_KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY
 export const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 export const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET
 
