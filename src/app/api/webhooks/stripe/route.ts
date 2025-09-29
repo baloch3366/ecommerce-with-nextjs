@@ -2,9 +2,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
-import Order from '@/lib/db/models/order.model'
-import { sendPurchaseReceipt } from '../../../../../emails'
+import Order from '@/lib/db/model/order-model'
 import { STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET } from '@/lib/constant'
+import { sendPurchaseReceipt } from '../../../../../email'
 
 const stripe = new Stripe(STRIPE_SECRET_KEY as string, {
   apiVersion: '2024-06-20', // always set API version
