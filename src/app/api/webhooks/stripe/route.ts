@@ -41,12 +41,15 @@ export async function POST(req: NextRequest) {
       // ✅ Update payment info
       order.isPaid = true
       order.paidAt = new Date()
+
       order.paymentResult = {
         id: event.id,
         status: 'COMPLETED',
-        email_address: email || order.user?.email,
+        email_address: email!,
         pricePaid: (pricePaidInCents / 100).toFixed(2), // cents → dollars
       }
+    
+
       await order.save()
 
       // ✅ Send confirmation email
@@ -61,8 +64,14 @@ export async function POST(req: NextRequest) {
 
     // ✅ Ignore unhandled events
     return NextResponse.json({ received: true })
-  } catch (err: any) {
+  } catch (err: unknown) {
+  if (err instanceof Error) {
     console.error('❌ Stripe webhook error:', err.message)
     return NextResponse.json({ error: `Webhook Error: ${err.message}` }, { status: 400 })
   }
+
+  console.error('❌ Stripe webhook unknown error:', err)
+  return NextResponse.json({ error: 'Webhook Error: Unknown error' }, { status: 400 })
+}
+
 }

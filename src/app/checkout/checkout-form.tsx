@@ -30,7 +30,7 @@ export default function CheckoutForm() {
       {/* payment method */}
       {isAddressSelected && !isPaymentMethodSelected && (
         <CheckoutPaymentMethod
-          value={cart.paymentMethod}
+          value={cart.paymentMethod ?? ""}
           onChange={(v) => setPaymentMethod(v)}
           onConfirm={() => setIsPaymentMethodSelected(true)}
         />

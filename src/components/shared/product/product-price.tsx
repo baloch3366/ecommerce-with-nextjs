@@ -1,22 +1,23 @@
 
 "use client";
 import { cn, currency_formate } from "@/lib/utils";
+interface ProductPriceProps {
+  price: number;
+  className?: string;
+  listPrice?: number;
+  isDeal?: boolean;
+  forListing?: boolean; // ✅ Keep this
+  plain?: boolean;
+}
 
 const ProductPrice = ({
   price,
   className,
   listPrice = 0,
   isDeal = false,
-  // forListing = true,
+  forListing = true, // eslint-disable-line @typescript-eslint/no-unused-vars
   plain = false,
-}: {
-  price: number;
-  className?: string;
-  listPrice?: number;
-  isDeal?: boolean;
-  // forListing?: boolean;
-  plain?: boolean;
-}) => {
+}:ProductPriceProps) => {
   if (typeof price !== "number" || isNaN(price)) return null;
 
   const discountPercent =
