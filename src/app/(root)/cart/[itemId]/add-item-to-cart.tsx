@@ -61,7 +61,7 @@ export default function AddItemToCart({ itemId }: { itemId: string }) {
             </Card>
 
             <Card className="w-full rounded-none">
-              <CardContent className="p-4 rounded-none">
+              <CardContent className="p-4 h-full">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div className="flex justify-center items-center">
                     {itemsPrice < FREE_SHIPPING_MIN_PRICE ? (
@@ -75,7 +75,7 @@ export default function AddItemToCart({ itemId }: { itemId: string }) {
                         Shipping 
                       </div>
                     ): (
-                      <div className="flex item-center">
+                      <div className="flex items-center">
                         <div>
                           <span className="text-green-700">
                             Your order qualifies for FREE Shipping.
@@ -86,7 +86,7 @@ export default function AddItemToCart({ itemId }: { itemId: string }) {
                     )}
                   </div>
 
-                  <div className="lg:border-1 lg:border-muted lg:pl-3 flex flex-col items-center gap-3 ">
+                  <div className="lg:border-l lg:border-muted lg:pl-3 flex flex-col items-center gap-3 ">
                     <div className="flex gap-3">
                       <span className="text-lg font-bold">Cart Subtotal:</span>
                       <ProductPrice className="text-2xl" price={itemsPrice}/>

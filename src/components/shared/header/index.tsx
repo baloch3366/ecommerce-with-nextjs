@@ -8,6 +8,7 @@ import { getAllCategory } from "@/lib/actions/product.actions";
 
 export default async function Header() {
  const allCategories = await getAllCategory()
+ console.log("allcat", allCategories)
    
  return (
     <header className="bg-gray-900 text-white">

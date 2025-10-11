@@ -74,7 +74,7 @@ export default function CartPage() {
                             <span className="font-bold">Size </span> {item.size}
                           </p>
                         </div>
-                        <div className="flex gap-2 item-center">
+                        <div className="flex gap-2 items-center">
                           <Select
                             value={item.quantity.toString()}
                             onValueChange={(value) =>
@@ -138,8 +138,8 @@ export default function CartPage() {
               </Card>
             </div>
 
-            <div>
-              <Card className="rounded-none">
+            <div >
+              <Card className="rounded-none ">
                 <CardContent className="py-4 space-y-4">
                   {itemsPrice < FREE_SHIPPING_MIN_PRICE ? (
                     <div className="flex-1">

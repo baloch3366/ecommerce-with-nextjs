@@ -85,7 +85,7 @@ export async function getRelatedProductByCategory({
         .lean(),
       Product.countDocuments(condition)
     ]);
-    console.log("Related products found:", products.map(p => ({ name: p.name, category: p.category })));
+    // console.log("Related products found:", products.map(p => ({ name: p.name, category: p.category })));
 
 
     return {

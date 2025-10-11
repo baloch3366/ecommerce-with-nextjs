@@ -77,8 +77,8 @@ export default function AddToCart({
           type="button"
           onClick={async () => {
             try {
-              const itemId = await addItem(item, quantity)
-              console.log('Item added with clientId:', itemId)
+              await addItem(item, quantity)
+              // console.log('Item added with clientId:', itemId)
               router.push('/cart')
             } catch (error) {
               if (error instanceof Error) {

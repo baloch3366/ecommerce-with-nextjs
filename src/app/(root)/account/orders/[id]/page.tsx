@@ -27,7 +27,7 @@ export default async function OrderDetailsPage(props: {
   const { id } = params
 
   const order = await getOrderById(id)
-  console.log('order', order)
+  // console.log('order', order)
   if (!order) notFound()
 
   const session = await auth()
