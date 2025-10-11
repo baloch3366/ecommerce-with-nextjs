@@ -36,31 +36,24 @@ export const {
     },
     adapter: MongoDBAdapter(client),
     providers:[
+                Google({
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            allowDangerousEmailAccountLinking: true
+        }),
+
         // Google({
-        //  allowDangerousEmailAccountLinking: true
-        // }),
-        Google({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            authorization: {
-            params: {
-                prompt: "consent",
-                access_type: "offline",
-                response_type: "code",
-                scope: "openid email profile",
-            },
-            },
-            // profile(profile) {
-            // return {
-            //     id: profile.sub,
-            //     name: profile.name,
-            //     email: profile.email,
-            //     image: profile.picture || null,
-            //     role: "user", // Default role
-            // }
-            // },
-            // checks: ["pkce", "state"],
-             }),
+        //     clientId: process.env.GOOGLE_CLIENT_ID,
+        //     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        //     authorization: {
+        //     params: {
+        //         prompt: "consent",
+        //         access_type: "offline",
+        //         response_type: "code",
+        //         scope: "openid email profile",
+        //     },
+        //     },
+            //  }),
 
            Credentials({
             name: 'Credentials',

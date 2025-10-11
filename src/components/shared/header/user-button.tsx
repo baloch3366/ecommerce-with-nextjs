@@ -37,7 +37,7 @@ export default async function UserButton () {
                         <Link className='w-full' href="/account">
                          <DropdownMenuItem>Your account</DropdownMenuItem>
                         </Link>
-                        <Link className="w-full" href='/account/order'>
+                        <Link className="w-full" href='/account/orders'>
                         <DropdownMenuItem>Your orders</DropdownMenuItem>
                         </Link>
 

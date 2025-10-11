@@ -161,3 +161,6 @@ export const OrderInputSchema = z.object({
     paidAt: z.date().optional(),
 })
 
+export const UserNameSchema = z.object({
+    name: UserName
+})

@@ -13,6 +13,8 @@ import {
   getRelatedProductByCategory,
 } from "@/lib/actions/product.actions";
 import { generateId, round2 } from "@/lib/utils";
+import ReviewList from "./review-list";
+import { auth } from "@/auth";
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
@@ -39,6 +41,8 @@ export default async function ProductDetails(props: {
 
   const product = await getProductBySlug(slug);
   // console.log("product by slug", product);
+    const session = await auth()
+
   const relatedProducts = await getRelatedProductByCategory({
     category: product.category,
     productId: product._id.toString(),
@@ -134,6 +138,12 @@ export default async function ProductDetails(props: {
             )}
           </div>
         </div>
+      </section>
+      <section className='mb-10 mt-10'>
+            <h2 className='h2-bold mb-3' id="reviews">
+              Customer Reviews
+            </h2>
+            <ReviewList product={product} userId={session?.user.id} />
       </section>
       <section className=" mb-10 mt-10">
         <ProductSlider

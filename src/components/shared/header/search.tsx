@@ -2,9 +2,11 @@ import React from 'react'
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select"
 import {Input} from "@/components/ui/input"
 import { SearchIcon } from 'lucide-react'
-const categories = ["men","women","kids", "accessories"]
+import { getAllCategory } from '@/lib/actions/product.actions'
+// const categories = ["men","women","kids", "accessories"]
 
-const Search = () => {
+const Search = async() => {
+  const categories = await getAllCategory()
   return (
     <form action="/search" method='GET' className='flex items-stretch h-9'>
       <Select name='category'>
