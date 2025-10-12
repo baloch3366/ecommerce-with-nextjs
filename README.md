@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+A full-featured modern e-commerce web application built with Next.js 15, TypeScript, and MongoDB, featuring authentication, product reviews, payments, and responsive UI.
 
-## Getting Started
+🌐 Live Demo
 
-First, run the development server:
+🔗 E-Commerce App (Live on Vercel)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+✨ Features
+🧩 Core Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🏠 Modern UI built with Next.js App Router and Tailwind CSS
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🔍 Search, Filter, Sort, and Pagination
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🏷️ Categories, Tags, and Best-Selling / Deal of the Day sections
 
-## Learn More
+⭐ Product Reviews & Ratings with average summary
 
-To learn more about Next.js, take a look at the following resources:
+🛒 Add to Cart, Manage Cart, and Checkout Flow
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+👀 Recently Viewed Products (Browsing History)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📦 Order Summary & Order Details Page
 
-## Deploy on Vercel
+🔐 Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+✅ NextAuth v5 with:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Google OAuth login
+
+Credentials login (email + password)
+
+🔒 JWT-based sessions with MongoDB adapter
+
+🔑 Password hashing via bcrypt
+
+💳 Payments
+
+💸 Stripe integration for card payments
+
+🅿️ PayPal integration for PayPal checkout
+
+🧾 Validation & Data Handling
+
+🧠 Zod schema validation on both client and server
+
+🧮 Pagination powered by mongoose-aggregate-paginate-v2
+
+📬 Resend Email API for sending confirmation emails
+
+
+  Clone the repo
+git clone https://github.com/your-username/ecommerce-web.git
+cd ecommerce-web
+ 
+ 💡 Deployment
+ Deployed on Vercel:
+ 🔗 https://ecommerce-with-nextjs-1drs.vercel.app
