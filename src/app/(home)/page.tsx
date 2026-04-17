@@ -1,5 +1,5 @@
 
-
+export const dynamic = "force-dynamic";
 import BrowsingHistoryList from "@/components/shared/browsing-history-list";
 import { HomeCarousel } from "@/components/shared/home/home-carousel";
 import { HomeCart } from "@/components/shared/home/homeCard";
