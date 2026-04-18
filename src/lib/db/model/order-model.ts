@@ -1,9 +1,9 @@
 import { IOrderInput } from "@/types";
-import { Schema, Document, models, model, Model } from "mongoose";
+import { Schema, Document, models, model, Model, Types } from "mongoose";
 
 
 export interface IOrder extends Document, IOrderInput{
-    _id: string,
+  _id: Types.ObjectId; 
     createdAt: Date,
     updatedAt: Date
 }

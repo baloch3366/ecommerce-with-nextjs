@@ -1,10 +1,10 @@
 import { IProductField } from '@/types';
-import { Document, model, Model, models, Schema } from "mongoose"
+import { Document, model, Model, models, Schema, Types } from "mongoose"
 
-export interface IProduct extends Document, IProductField  {
-    _id : string,
-    createdAt : Date,
-    updatedAt : Date
+export interface IProduct extends Document, IProductField {
+  _id: Types.ObjectId
+  createdAt: Date
+  updatedAt: Date
 }
 const productSchema = new Schema<IProduct>({
   name:{

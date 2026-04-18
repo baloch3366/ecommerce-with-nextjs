@@ -26,7 +26,8 @@ export async function getProductForCard({ tag, limit = 4, page = 1 }: Pagination
   })
   .sort({ createdAt: -1 })
   .skip((page - 1) * limit)
-  .limit(limit).lean();
+  .limit(limit)
+  .lean<IProduct[]>(); 
 }
 
 
@@ -82,7 +83,7 @@ export async function getRelatedProductByCategory({
         .sort({ numSales: -1 })
         .skip(skip)
         .limit(limit)
-        .lean(),
+        .lean<IProduct[]>(), 
       Product.countDocuments(condition)
     ]);
     // console.log("Related products found:", products.map(p => ({ name: p.name, category: p.category })));

@@ -1,8 +1,8 @@
 import { IUserField } from "@/types";
-import { Document, model, Model, models, Schema } from "mongoose";
+import { Document, model, Model, models, Schema, Types } from "mongoose";
 
 export interface IUser extends Document, IUserField {
-    _id:string
+      _id: Types.ObjectId
     createAt: Date
     updateAt: Date
 }

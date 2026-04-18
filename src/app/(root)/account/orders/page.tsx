@@ -17,27 +17,30 @@ import { getOrders } from '@/lib/actions/order-action'
 import { IOrder } from '@/lib/db/model/order-model'
 
 const PAGE_TITLE = 'Your Orders'
+
 export const metadata: Metadata = {
   title: PAGE_TITLE,
 }
 
-
 export default async function OrdersPage(props: {
   searchParams: Promise<{ page: string }>
 }) {
-
   const searchParams = await props.searchParams
   const page = Number(searchParams.page) || 1
+
   const orders = await getOrders({ page })
 
   return (
     <div>
+      {/* Breadcrumb */}
       <div className='flex gap-2'>
         <Link href='/account'>Your Account</Link>
         <span>›</span>
         <span>{PAGE_TITLE}</span>
       </div>
+
       <h1 className='h1-bold pt-4'>{PAGE_TITLE}</h1>
+
       <div className='overflow-x-auto'>
         <Table>
           <TableHeader>
@@ -50,51 +53,63 @@ export default async function OrdersPage(props: {
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
+
           <TableBody>
             {orders.data.length === 0 && (
               <TableRow>
-                <TableCell colSpan={6} className=''>
+                <TableCell colSpan={6}>
                   You have no orders.
                 </TableCell>
               </TableRow>
             )}
-            {orders.data.map((order: IOrder) => (
-              <TableRow key={order._id}>
-                <TableCell>
-                  <Link href={`/account/orders/${order._id}`}>
-                    {formateId(order._id)}
-                  </Link>
-                </TableCell>
-                <TableCell>
-                  {formatDateTime(order.createdAt!).dateTime}
-                </TableCell>
-                <TableCell>
-                  <ProductPrice price={order.totalPrice} plain />
-                </TableCell>
-                <TableCell>
-                  {order.isPaid && order.paidAt
-                    ? formatDateTime(order.paidAt).dateTime
-                    : 'No'}
-                </TableCell>
-                <TableCell>
-                  {order.isDelivered && order.deliveredAt
-                    ? formatDateTime(order.deliveredAt).dateTime
-                    : 'No'}
-                </TableCell>
-                <TableCell>
-                  <Link href={`/account/orders/${order._id}`}>
-                    <span className='px-2'>Details</span>
-                  </Link>
-                </TableCell>
-              </TableRow>
-            ))}
+
+            {orders.data.map((order: IOrder) => {
+              const id = order._id.toString() 
+
+              return (
+                <TableRow key={id}>
+                  <TableCell>
+                    <Link href={`/account/orders/${id}`}>
+                      {formateId(id)}
+                    </Link>
+                  </TableCell>
+
+                  <TableCell>
+                    {formatDateTime(order.createdAt!).dateTime}
+                  </TableCell>
+
+                  <TableCell>
+                    <ProductPrice price={order.totalPrice} plain />
+                  </TableCell>
+
+                  <TableCell>
+                    {order.isPaid && order.paidAt
+                      ? formatDateTime(order.paidAt).dateTime
+                      : 'No'}
+                  </TableCell>
+
+                  <TableCell>
+                    {order.isDelivered && order.deliveredAt
+                      ? formatDateTime(order.deliveredAt).dateTime
+                      : 'No'}
+                  </TableCell>
+
+                  <TableCell>
+                    <Link href={`/account/orders/${id}`}>
+                      <span className='px-2'>Details</span>
+                    </Link>
+                  </TableCell>
+                </TableRow>
+              )
+            })}
           </TableBody>
         </Table>
+
         {orders.totalPages > 1 && (
-          // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-          <Pagination page={page} totalPages={orders?.totalPages!} />
+          <Pagination page={page} totalPages={orders.totalPages} />
         )}
       </div>
+
       <BrowsingHistoryList className='mt-16' />
     </div>
   )

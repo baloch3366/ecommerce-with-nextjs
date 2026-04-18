@@ -48,7 +48,7 @@ export default function PaymentForm({
 
 
   const handleCreatePayPalOrder = async () => {
-    const res = await createPayPalOrder(order._id)
+    const res = await createPayPalOrder(order._id.toString())
     if (!res.success)
       return  toast.error(res.message)  
     return res.data
@@ -56,7 +56,7 @@ export default function PaymentForm({
 
 
   const handleApprovePayPalOrder = async (data: { orderID: string }) => {
-    const res = await approvePayPalOrder(order._id, data)
+    const res = await approvePayPalOrder(order._id.toString(), data)
     if (res.success) {
       toast.success(res.message)   
     } else {
@@ -120,7 +120,7 @@ export default function PaymentForm({
 
             {!isPaid && paymentMethod === 'Stripe' && clientSecret?.trim() && (
               <Elements stripe={stripePromise} options={{clientSecret}} >
-                <StripeForm priceInCents={Math.round(order.totalPrice * 100)} orderId={order._id}/>
+                <StripeForm priceInCents={Math.round(order.totalPrice * 100)} orderId={order._id.toString() }/>
               </Elements>
             )}
 
